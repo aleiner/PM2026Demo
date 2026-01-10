@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rancher
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: 'https://releases.rancher.com/server-charts/stable'
+    chart: rancher
+    targetRevision: 2.13.1
+    helm:
+      valueFiles:
+      - $values/1-app-of-apps/apps/rancher/values.yaml
+  - repoURL: 'https://github.com/aleiner/PM2026Demo.git'
+    targetRevision: main
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cattle-system
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

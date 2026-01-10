@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rancher
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - clusters:
+              selector:
+                matchLabels:
+                  argocd.argoproj.io/cluster-name: rancher
+          - git:
+              repoURL: 'https://github.com/aleiner/PM2026Demo.git'
+              revision: main
+              directories:
+                - path: 2-applicationset/apps/rancher/{{name}} # BUILT-IT VARIABLE
+  template:
+    metadata:
+      name: "rancher-{{name}}"
+    spec:
+      project: default
+      sources:
+        - repoURL: 'https://releases.rancher.com/server-charts/stable'
+          chart: rancher
+          targetRevision: 2.13.1
+          helm:
+            releaseName: rancher
+            valueFiles:
+              - $values/2-applicationset/apps/rancher/{{name}}/values.yaml # BUILT-IT VARIABLE
+        - repoURL: 'https://github.com/aleiner/PM2026Demo.git'
+          targetRevision: main
+          ref: values
+      destination:
+        server: '{{server}}' # BUILT-IT VARIABLE
+        namespace: cattle-system
