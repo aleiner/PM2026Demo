@@ -7,15 +7,12 @@ spec:
   generators:
     - matrix:
         generators:
-          - clusters:
-              selector:
-                matchLabels:
-                  argocd.argoproj.io/cluster-name: rancher
+          - clusters: {}
           - git:
               repoURL: 'https://github.com/aleiner/PM2026Demo.git'
               revision: main
               directories:
-                - path: 2-applicationset/apps/rancher/{{name}} # BUILT-IT VARIABLE
+                - path: 2-applicationset/apps/rancher/{{server}} # BUILT-IT VARIABLE
   template:
     metadata:
       name: "rancher-{{name}}"
