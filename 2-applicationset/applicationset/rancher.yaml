@@ -12,7 +12,7 @@ spec:
               repoURL: 'https://github.com/aleiner/PM2026Demo.git'
               revision: main
               directories:
-                - path: 2-applicationset/apps/rancher/{{name}}.yaml # BUILT-IT VARIABLE
+                - files: 2-applicationset/apps/rancher/{{name}}.yaml # BUILT-IT VARIABLE
   template:
     metadata:
       name: "rancher-{{name}}"
