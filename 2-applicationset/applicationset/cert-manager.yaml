@@ -18,7 +18,7 @@ spec:
           helm:
             releaseName: cert-manager
             valueFiles:
-              - $values/2-applicationset/apps/cert-manager/values.yaml
+              - $values/2-applicationset/apps/cert-manager/rancher.yaml
         - repoURL: 'https://github.com/aleiner/PM2026Demo.git'
           targetRevision: main
           ref: values
