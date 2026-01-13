@@ -25,7 +25,7 @@ spec:
           helm:
             releaseName: rancher
             valueFiles:
-              - $values/2-applicationset/apps/rancher/{{name}}/values.yaml # BUILT-IT VARIABLE
+              - $values/2-applicationset/apps/rancher/{{name}}.yaml # BUILT-IT VARIABLE
         - repoURL: 'https://github.com/aleiner/PM2026Demo.git'
           targetRevision: main
           ref: values
