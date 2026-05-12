@@ -1,0 +1,6 @@
+ingress:
+  hosts:
+    - host: tetris.10.7.2.126.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
