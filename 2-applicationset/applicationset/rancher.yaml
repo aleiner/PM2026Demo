@@ -21,7 +21,7 @@ spec:
       sources:
         - repoURL: 'https://releases.rancher.com/server-charts/stable'
           chart: rancher
-          targetRevision: 2.13.1
+          targetRevision: 2.14.1
           helm:
             releaseName: rancher
             valueFiles:
